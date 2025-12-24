@@ -1,47 +1,44 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Code, Database, Cloud, Smartphone, ArrowRight, Clock, Award } from "lucide-react"
+import Image from "next/image"
 
 const courses = [
   {
     icon: Code,
     title: "Basic Digital Marketing",
     description: "Detailed program of digital techniques that enable you to make the most of all available tools and develop the best strategies to meet your marketing goals.",
-    duration: "16 Weeks",
+    duration: "4 Weeks",
     level: "Professional",
     color: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
+    image: "/courseimage/marketing.webp",
   },
   {
     icon: Database,
     title: "Advanced Digital Marketing",
     description: "The Advanced Digital Marketing Course will give you everything you need to succeed in the corporate world of marketing and advertising. On completion of this course, you will be able to develop and execute a solid digital marketing strategy.",
-    duration: "20 Weeks",
+    duration: "4-6 Weeks",
     level: "Advanced",
     color: "bg-green-500/10 text-green-600 dark:text-green-400",
+    image: "/courseimage/socailmed.webp",
   },
   {
     icon: Cloud,
     title: "Search Engine Optimization",
     description: "Focuses on optimizing website content and structure to enhance visibility in search engine results, emphasizing keyword research, on-page optimization, and link building strategies.",
-    duration: "12 Weeks",
+    duration: "4 Weeks",
     level: "Professional",
     color: "bg-purple-500/10 text-purple-600 dark:text-purple-400",
-  },
-  {
-    icon: Smartphone,
-    title: "Digital Skills With 8 level",
-    description: "Offers a comprehensive program covering various digital competencies, progressing from foundational concepts like computer literacy and internet basics to advanced skills such as coding, digital marketing, and data analytics.",
-    duration: "14 Weeks",
-    level: "Intermediate",
-    color: "bg-orange-500/10 text-orange-600 dark:text-orange-400",
+    image: "/courseimage/seo.webp",
   },
   {
     icon: Smartphone,
     title: "Digital Content Creation (DCC)",
     description: "Teaches skills and strategies for crafting compelling digital content, including writing, graphic design, video production, and multimedia storytelling, to engage and resonate with target audiences effectively.",
-    duration: "14 Weeks",
+    duration: "4 Weeks",
     level: "Intermediate",
     color: "bg-orange-500/10 text-orange-600 dark:text-orange-400",
+    image: "/courseimage/dcc.webp",
   },
 ]
 
@@ -68,7 +65,6 @@ export function CoursesSection() {
 
           <div className="space-y-12">
             {courses.map((course, index) => {
-              const Icon = course.icon
               const isEven = index % 2 === 0
 
               return (
@@ -78,33 +74,39 @@ export function CoursesSection() {
 
                   {/* Course Card - Alternating Layout */}
                   <div className={`lg:w-[calc(50%-2rem)] ${isEven ? "lg:mr-auto lg:pr-12" : "lg:ml-auto lg:pl-12"}`}>
-                    <div className="group bg-card border rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                      {/* Icon */}
-                      <div
-                        className={`inline-flex items-center justify-center size-16 rounded-xl ${course.color} mb-6`}
-                      >
-                        <Icon className="size-8" />
-                      </div>
+                    <div className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2 border border-white/10">
+                      {/* Background Image - Naturally Defines Card Size */}
+                      <Image
+                        src={course.image}
+                        alt={course.title}
+                        width={800}
+                        height={600}
+                        className="w-full h-auto block transition-transform duration-700 group-hover:scale-105"
+                      />
 
-                      <h3 className="text-2xl font-bold mb-3">{course.title}</h3>
-                      <p className="text-muted-foreground mb-6">{course.description}</p>
+                      {/* Dark Gradient Overlay for Text Readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
 
-                      {/* Course Meta */}
-                      <div className="flex items-center gap-6 mb-6 text-sm">
-                        <div className="flex items-center gap-2">
-                          <Clock className="size-4 text-muted-foreground" />
-                          <span>{course.duration}</span>
+                      {/* Content Overlay */}
+                      <div className="absolute inset-0 p-6 lg:p-10 flex flex-col justify-end text-white">
+                        <Badge className="w-fit mb-4 bg-primary/90 text-white border-none backdrop-blur-md px-4 py-1.5 text-xs font-semibold uppercase tracking-wider">
+                          {course.level}
+                        </Badge>
+                        <h3 className="text-2xl lg:text-4xl font-black mb-4 tracking-tight drop-shadow-2xl leading-none">{course.title}</h3>
+
+                        <div className="flex items-center justify-between mt-auto">
+                          <div className="flex items-center gap-6">
+                            <div className="flex items-center gap-2.5 text-sm lg:text-base font-bold text-white/90">
+                              <Clock className="size-5" />
+                              <span>{course.duration}</span>
+                            </div>
+                          </div>
+                          <Button size="lg" className="rounded-full bg-white text-black hover:bg-primary hover:text-white transition-all font-bold px-8 shadow-xl hover:shadow-primary/50">
+                            Learn More
+                            <ArrowRight className="ml-2 size-5" />
+                          </Button>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Award className="size-4 text-muted-foreground" />
-                          <span>{course.level}</span>
-                        </div>
                       </div>
-
-                      <Button className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                        Learn More
-                        <ArrowRight className="ml-2 size-4 group-hover:translate-x-1 transition-transform" />
-                      </Button>
                     </div>
                   </div>
                 </div>
@@ -115,7 +117,7 @@ export function CoursesSection() {
 
         {/* CTA */}
         <div className="text-center mt-16">
-          <Button size="lg" variant="outline">
+          <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all">
             View Full Course Catalog
           </Button>
         </div>
