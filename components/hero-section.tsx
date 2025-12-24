@@ -29,9 +29,6 @@ export function HeroSection() {
                 Explore Courses
                 <ArrowRight className="ml-2 size-4" />
               </Button>
-              <Button size="lg" variant="outline">
-                Download Brochure
-              </Button>
             </div>
 
             <div className="flex flex-col gap-3 pt-4">
@@ -62,12 +59,12 @@ export function HeroSection() {
 
             {/* Floating Stats Card */}
             <div className="absolute -bottom-6 -left-6 bg-card border shadow-lg rounded-xl p-6 backdrop-blur-sm">
-              <div className="text-3xl font-bold text-primary">5,000+</div>
+              <div className="text-3xl font-bold text-primary">25+</div>
               <div className="text-sm text-muted-foreground">Certified Graduates</div>
             </div>
 
             <div className="absolute -top-6 -right-6 bg-card border shadow-lg rounded-xl p-6 backdrop-blur-sm">
-              <div className="text-3xl font-bold text-secondary">98%</div>
+              <div className="text-3xl font-bold text-secondary">100%</div>
               <div className="text-sm text-muted-foreground">Success Rate</div>
             </div>
           </div>

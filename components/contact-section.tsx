@@ -1,19 +1,56 @@
 "use client"
 
 import type React from "react"
-
+import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin, Loader2, CheckCircle2, AlertCircle } from "lucide-react"
 
 export function ContactSection() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted")
+    setIsSubmitting(true)
+    setStatus("idle")
+
+    const formData = new FormData(e.currentTarget)
+    const data = Object.fromEntries(formData)
+
+    try {
+      // Using Web3Forms for simple email submission
+      // Replace 'YOUR_ACCESS_KEY_HERE' with your actual access key from web3forms.com
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "YOUR_ACCESS_KEY_HERE", // User needs to get this from web3forms.com
+          ...data,
+          subject: `New Contact Form Submission from ${data.firstName} ${data.lastName}`,
+          from_name: "CTI Website",
+        }),
+      })
+
+      const result = await response.json()
+      if (result.success) {
+        setStatus("success")
+          ; (e.target as HTMLFormElement).reset()
+      } else {
+        setStatus("error")
+      }
+    } catch (error) {
+      console.error("Form submission error:", error)
+      setStatus("error")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -33,42 +70,99 @@ export function ContactSection() {
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
           <div className="bg-card border rounded-2xl p-8 shadow-sm">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName">First Name</Label>
-                  <Input id="firstName" placeholder="John" required />
+            {status === "success" ? (
+              <div className="h-full flex flex-col items-center justify-center text-center py-12 space-y-4">
+                <div className="size-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+                  <CheckCircle2 className="size-10" />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" placeholder="Doe" required />
+                <h3 className="text-2xl font-bold">Message Sent!</h3>
+                <p className="text-muted-foreground max-w-sm">
+                  Thank you for reaching out. We've received your message and will get back to you at info@edu-cti.com
+                  within 24 hours.
+                </p>
+                <Button variant="outline" onClick={() => setStatus("idle")} className="mt-6">
+                  Send Another Message
+                </Button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="firstName">First Name</Label>
+                    <Input id="firstName" name="firstName" placeholder="John" required disabled={isSubmitting} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="lastName">Last Name</Label>
+                    <Input id="lastName" name="lastName" placeholder="Doe" required disabled={isSubmitting} />
+                  </div>
                 </div>
-              </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
-                <Input id="email" type="email" placeholder="john.doe@example.com" required />
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email Address</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="john.doe@example.com"
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number</Label>
-                <Input id="phone" type="tel" placeholder="+1 (555) 000-0000" />
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone Number</Label>
+                  <Input id="phone" name="phone" type="tel" placeholder="+1 (555) 000-0000" disabled={isSubmitting} />
+                </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="course">Course of Interest</Label>
-                <Input id="course" placeholder="e.g., Full Stack Development" />
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor="course">Course of Interest</Label>
+                  <Input
+                    id="course"
+                    name="course"
+                    placeholder="e.g., Full Stack Development"
+                    disabled={isSubmitting}
+                  />
+                </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="message">Message</Label>
-                <Textarea id="message" placeholder="Tell us about your goals and how we can help..." rows={5} />
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor="message">Message</Label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    placeholder="Tell us about your goals and how we can help..."
+                    rows={5}
+                    disabled={isSubmitting}
+                    required
+                  />
+                </div>
 
-              <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                Send Message
-              </Button>
-            </form>
+                {status === "error" && (
+                  <div className="flex items-center gap-2 text-destructive text-sm bg-destructive/10 p-3 rounded-lg">
+                    <AlertCircle className="size-4" />
+                    <span>Something went wrong. Please try again or email us directly.</span>
+                  </div>
+                )}
+
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    "Send Message"
+                  )}
+                </Button>
+                <p className="text-xs text-center text-muted-foreground">
+                  By clicking "Send Message", you agree to our privacy policy.
+                </p>
+              </form>
+            )}
           </div>
 
           {/* Contact Information */}
@@ -89,10 +183,10 @@ export function ContactSection() {
                 <div>
                   <div className="font-semibold mb-1">Email Us</div>
                   <a
-                    href="mailto:admissions@cti.edu"
+                    href="mailto:info@edu-cti.com"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    admissions@cti.edu
+                    info@edu-cti.com
                   </a>
                 </div>
               </div>
@@ -104,9 +198,8 @@ export function ContactSection() {
                 <div>
                   <div className="font-semibold mb-1">Call Us</div>
                   <a href="tel:+15551234567" className="text-muted-foreground hover:text-primary transition-colors">
-                    +1 (555) 123-4567
+                    +251 92 373 7373
                   </a>
-                  <div className="text-sm text-muted-foreground mt-1">Mon-Fri, 9am-6pm PST</div>
                 </div>
               </div>
 
@@ -117,11 +210,9 @@ export function ContactSection() {
                 <div>
                   <div className="font-semibold mb-1">Visit Us</div>
                   <div className="text-muted-foreground">
-                    123 Tech Avenue, Suite 400
+                    Bole Japon Embassy
                     <br />
-                    San Francisco, CA 94105
-                    <br />
-                    United States
+                    Addis Ababa, Ethiopia
                   </div>
                 </div>
               </div>

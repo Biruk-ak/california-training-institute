@@ -23,43 +23,39 @@ export function Footer() {
             </p>
 
             {/* Newsletter */}
-            <div className="space-y-3">
+            {/* <div className="space-y-3">
               <div className="text-sm font-semibold">Subscribe to our newsletter</div>
               <div className="flex gap-2">
                 <Input placeholder="Enter your email" type="email" className="flex-1" />
                 <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Subscribe</Button>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Programs */}
           <div>
             <h3 className="font-semibold mb-4">Programs</h3>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 text-sm text-muted-foreground leading-relaxed">
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  Full Stack Development
-                </Link>
+                <p>Basic Digital Marketing</p>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  Data Science
-                </Link>
+                <p>Advanced Digital Marketing</p>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  Cloud Architecture
-                </Link>
+                <p>Digital Content Creation (DCC)</p>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  Mobile Development
-                </Link>
+                <p>Website Development</p>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  All Courses
-                </Link>
+                <p>Search Engine Optimization</p>
+              </li>
+              <li>
+                <p>Social Media Management</p>
+              </li>
+              <li>
+                <p>Digital Skills With 8 level</p>
               </li>
             </ul>
           </div>
@@ -67,20 +63,20 @@ export function Footer() {
           {/* Company */}
           <div>
             <h3 className="font-semibold mb-4">Company</h3>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 text-sm text-muted-foreground leading-relaxed">
               <li>
                 <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  About Us
+                  Home
                 </Link>
               </li>
               <li>
                 <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  Our Instructors
+                  About
                 </Link>
               </li>
               <li>
                 <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  Success Stories
+                  Courses
                 </Link>
               </li>
               <li>
@@ -90,7 +86,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  Careers
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -98,33 +94,21 @@ export function Footer() {
 
           {/* Support */}
           <div>
-            <h3 className="font-semibold mb-4">Support</h3>
-            <ul className="space-y-3 text-sm">
+            <h3 className="font-semibold mb-4">Address</h3>
+            <ul className="space-y-3 text-sm text-muted-foreground leading-relaxed">
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  Help Center
-                </Link>
+                <p>Bole Japon Embassy  Addis Ababa, Ethiopia</p>
+              </li>
+              {/* <li>
+                <p>Addis Ababa, Ethiopia</p>
+              </li> */}
+              <li>
+                <p>Phone: +251 923737373</p>
               </li>
               <li>
-                <Link href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
-                  Contact Us
-                </Link>
+                Email: info@edu-cti.com
               </li>
-              <li>
-                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  FAQs
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  Terms of Service
-                </Link>
-              </li>
+
             </ul>
           </div>
         </div>
@@ -138,31 +122,31 @@ export function Footer() {
           {/* Social Links */}
           <div className="flex items-center gap-4">
             <Link
-              href="#"
+              href="https://web.facebook.com/californiatraininginstitute?_rdc=1&_rdr#"
               className="size-9 flex items-center justify-center rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
             >
               <Facebook className="size-4" />
             </Link>
             <Link
-              href="#"
+              href="https://x.com/edu_cti?s=20"
               className="size-9 flex items-center justify-center rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
             >
               <Twitter className="size-4" />
             </Link>
             <Link
-              href="#"
+              href="https://www.linkedin.com/company/california-training-institute-cti/about/"
               className="size-9 flex items-center justify-center rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
             >
               <Linkedin className="size-4" />
             </Link>
             <Link
-              href="#"
+              href="https://www.instagram.com/california_training_institute/"
               className="size-9 flex items-center justify-center rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
             >
               <Instagram className="size-4" />
             </Link>
             <Link
-              href="#"
+              href="https://www.youtube.com/@cti_edu"
               className="size-9 flex items-center justify-center rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
             >
               <Youtube className="size-4" />

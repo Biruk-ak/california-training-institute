@@ -20,7 +20,7 @@ export function GetCertifiedSection() {
 
             {/* Floating Credential Card */}
             <div className="absolute -right-6 top-1/2 -translate-y-1/2 bg-card border shadow-2xl rounded-xl p-6 max-w-[220px]">
-              <Award className="size-10 text-secondary mb-3" />
+              {/* <Award className="size-10 text-secondary mb-3" /> */}
               <div className="text-sm font-semibold mb-1">Globally Recognized</div>
               <div className="text-xs text-muted-foreground">ISO-certified programs accepted worldwide</div>
             </div>
@@ -30,7 +30,7 @@ export function GetCertifiedSection() {
               <div className="flex items-center gap-3">
                 <TrendingUp className="size-8" />
                 <div>
-                  <div className="text-2xl font-bold">92%</div>
+                  <div className="text-2xl font-bold">100%</div>
                   <div className="text-sm">Career Growth</div>
                 </div>
               </div>
