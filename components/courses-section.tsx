@@ -102,7 +102,7 @@ export function CoursesSection() {
                             </div>
                           </div>
                           <Button size="lg" className="rounded-full bg-white text-black hover:bg-primary hover:text-white transition-all font-bold px-8 shadow-xl hover:shadow-primary/50">
-                            Learn More
+                            view More
                             <ArrowRight className="ml-2 size-5" />
                           </Button>
                         </div>

@@ -1,7 +1,6 @@
 "use client"
 
 import { Badge } from "@/components/ui/badge"
-import { useEffect, useRef } from "react"
 
 const partners = [
   "Microsoft",
@@ -19,32 +18,6 @@ const partners = [
 ]
 
 export function PartnersSection() {
-  const marqueeRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const marquee = marqueeRef.current
-    if (!marquee) return
-
-    let animationId: number
-    let position = 0
-
-    const animate = () => {
-      position -= 0.5
-      if (marquee.firstElementChild) {
-        const firstChild = marquee.firstElementChild as HTMLElement
-        if (Math.abs(position) >= firstChild.offsetWidth) {
-          position = 0
-        }
-      }
-      marquee.style.transform = `translateX(${position}px)`
-      animationId = requestAnimationFrame(animate)
-    }
-
-    animationId = requestAnimationFrame(animate)
-
-    return () => cancelAnimationFrame(animationId)
-  }, [])
-
   return (
     <section className="py-20 lg:py-32 bg-muted/30 overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
@@ -67,7 +40,7 @@ export function PartnersSection() {
 
           {/* Marquee */}
           <div className="overflow-hidden">
-            <div ref={marqueeRef} className="flex gap-12 whitespace-nowrap">
+            <div className="flex gap-12 whitespace-nowrap animate-scroll hover:[animation-play-state:paused] w-max">
               {/* Duplicate for seamless loop */}
               {[...partners, ...partners].map((partner, index) => (
                 <div
