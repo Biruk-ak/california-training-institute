@@ -9,7 +9,6 @@ export function CertificateSection() {
         <div className="max-w-5xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <Badge className="mb-4">Official Recognition</Badge>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-balance">
               Certificate of <span className="text-primary">Recognition</span>
             </h2>

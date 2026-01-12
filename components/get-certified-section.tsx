@@ -64,7 +64,6 @@ export function GetCertifiedSection() {
 
           {/* Right - Content */}
           <div className="space-y-6 order-1 lg:order-2">
-            <Badge className="w-fit">Career Transformation</Badge>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance">
               Get Certified &<br />

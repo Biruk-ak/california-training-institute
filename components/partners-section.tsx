@@ -23,7 +23,6 @@ export function PartnersSection() {
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <Badge className="mb-4">Industry Leaders</Badge>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-balance">
             Trusted by <span className="text-primary">Industry Leaders</span>
           </h2>

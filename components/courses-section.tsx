@@ -44,12 +44,21 @@ const courses = [
 
 export function CoursesSection() {
   return (
-    <section id="courses" className="py-20 lg:py-32">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section id="courses" className="py-20 lg:py-32 relative overflow-hidden">
+      <div className="container mx-auto px-4 lg:px-8 relative">
+        {/* Decorative Brand Image - Aligned to the end (right) */}
+        <div className="hidden lg:block absolute top-0 -right-20 w-64 h-64 pointer-events-none select-none z-0">
+          <Image
+            src="/cti-pattern/text.png"
+            alt=""
+            fill
+            className="object-contain -rotate-[90deg] opacity-100"
+          />
+        </div>
+
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <Badge className="mb-4">Comprehensive Programs</Badge>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-balance">
+        <div className="max-w-3xl mx-auto text-center mb-16 relative">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-balance relative z-20">
             Our <span className="text-primary">Certification Courses</span>
           </h2>
           <p className="text-lg text-muted-foreground text-pretty">
@@ -65,15 +74,46 @@ export function CoursesSection() {
 
           <div className="space-y-12">
             {courses.map((course, index) => {
-              const isEven = index % 2 === 0
+              // 1. Initial Alternating Card Side (0:Left, 1:Right, 2:Left, 3:Right)
+              const isLeftCard = index % 2 === 0
+              const cardSide = isLeftCard ? "left" : "right"
+
+              // 2. Pattern configuration (Placed in white space opposite to card)
+              const patternSide = isLeftCard ? "right" : "left"
+
+              // Light mode patterns: Alternate p2 and 3
+              const lightPattern = index % 2 === 0 ? "/cti-pattern/p2.png" : "/cti-pattern/3.png"
+              // Dark mode patterns: Alternate p1 and p2 (replaces 3.png with p1.png)
+              const darkPattern = index % 2 === 0 ? "/cti-pattern/p1.png" : "/cti-pattern/p2.png"
 
               return (
                 <div key={index} className="relative">
+                  {/* Background Patterns - Different for Light and Dark Modes */}
+                  <div className={`hidden lg:flex absolute inset-y-0 w-1/2 items-center justify-center z-0 pointer-events-none transition-all duration-1000
+                    ${patternSide === "left" ? "left-0" : "right-0"}`}>
+                    <div className="relative w-full h-80 animate-pulse-slow">
+                      {/* Light Mode Pattern */}
+                      <Image
+                        src={lightPattern}
+                        alt=""
+                        fill
+                        className="object-contain opacity-100 dark:hidden"
+                      />
+                      {/* Dark Mode Pattern */}
+                      <Image
+                        src={darkPattern}
+                        alt=""
+                        fill
+                        className="object-contain hidden dark:block opacity-100"
+                      />
+                    </div>
+                  </div>
+
                   {/* Timeline Dot */}
                   <div className="hidden lg:block absolute left-1/2 top-8 size-4 rounded-full bg-primary border-4 border-background -translate-x-1/2 z-10" />
 
                   {/* Course Card - Alternating Layout */}
-                  <div className={`lg:w-[calc(50%-2rem)] ${isEven ? "lg:mr-auto lg:pr-12" : "lg:ml-auto lg:pl-12"}`}>
+                  <div className={`relative z-10 lg:w-[calc(50%-2rem)] ${isLeftCard ? "lg:mr-auto lg:pr-12" : "lg:ml-auto lg:pl-12"}`}>
                     <div className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2 border border-white/10">
                       {/* Background Image - Naturally Defines Card Size */}
                       <Image

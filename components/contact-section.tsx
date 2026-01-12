@@ -58,7 +58,6 @@ export function ContactSection() {
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <Badge className="mb-4">Get Started Today</Badge>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-balance">
             Get In <span className="text-primary">Touch</span>
           </h2>
