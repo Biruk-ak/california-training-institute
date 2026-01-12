@@ -59,7 +59,7 @@ export function HeroSection() {
                 <div className="absolute inset-0 rounded-full border-2 border-white/5 border-dashed animate-[spin_40s_linear_infinite]" />
                 <div className="relative w-20 h-20 md:w-32 md:h-32">
                   <Image
-                    src="/cti-pattern/fav.png"
+                    src="/cti-pattern/fav.webp"
                     alt="CTI Global"
                     fill
                     className="object-contain p-2"
