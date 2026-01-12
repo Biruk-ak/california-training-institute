@@ -82,11 +82,13 @@ export function HeroSection() {
 
           {/* Bottom Left - Contact Us Button */}
           <div className="absolute bottom-8 left-8 md:bottom-16 md:left-16 z-20">
-            <Button size="lg" className="rounded-full bg-white/20 backdrop-blur-xl text-white border border-white/30 hover:bg-white/40 px-8 py-7 md:px-12 md:py-9 text-base md:text-xl font-semibold transition-all group shadow-xl">
-              Contact Us
-              <div className="ml-3 bg-white text-black rounded-full p-2 group-hover:translate-x-1 transition-transform">
-                <ArrowRight className="size-5" />
-              </div>
+            <Button asChild size="lg" className="rounded-full bg-white/20 backdrop-blur-xl text-white border border-white/30 hover:bg-white/40 px-8 py-7 md:px-12 md:py-9 text-base md:text-xl font-semibold transition-all group shadow-xl">
+              <Link href="#contact">
+                Contact Us
+                <div className="ml-3 bg-white text-black rounded-full p-2 group-hover:translate-x-1 transition-transform">
+                  <ArrowRight className="size-5" />
+                </div>
+              </Link>
             </Button>
           </div>
 

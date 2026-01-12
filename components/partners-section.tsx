@@ -1,20 +1,18 @@
 "use client"
 
 import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 
 const partners = [
-  "Microsoft",
-  "Amazon Web Services",
-  "Google Cloud",
-  "Meta",
-  "IBM",
-  "Oracle",
-  "Salesforce",
-  "Adobe",
-  "SAP",
-  "Cisco",
-  "Intel",
-  "Dell Technologies",
+  "/partners/a.webp",
+  "/partners/b.webp",
+  "/partners/c.webp",
+  "/partners/d.webp",
+  "/partners/e.webp",
+  "/partners/f.webp",
+  "/partners/g.webp",
+  "/partners/h.webp",
+  "/partners/i.webp",
 ]
 
 export function PartnersSection() {
@@ -44,9 +42,15 @@ export function PartnersSection() {
               {[...partners, ...partners].map((partner, index) => (
                 <div
                   key={index}
-                  className="inline-flex items-center justify-center px-8 py-6 bg-card border rounded-xl shadow-sm hover:shadow-md transition-shadow min-w-[200px]"
+                  className="inline-flex items-center justify-center px-8 py-6 bg-card border rounded-xl shadow-sm hover:shadow-md transition-shadow min-w-[220px] h-[120px]"
                 >
-                  <span className="text-lg font-semibold text-muted-foreground">{partner}</span>
+                  <Image
+                    src={partner}
+                    alt={`Partner ${index + 1}`}
+                    width={180}
+                    height={80}
+                    className="w-[180px] h-[120px] object-contain"
+                  />
                 </div>
               ))}
             </div>
