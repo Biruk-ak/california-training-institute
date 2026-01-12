@@ -104,7 +104,7 @@ export function CoursesSection() {
                         src={darkPattern}
                         alt=""
                         fill
-                        className="object-contain hidden dark:block opacity-100"
+                        className={`object-contain hidden dark:block opacity-100 ${patternSide === "left" ? "dark:rotate-180" : ""}`}
                       />
                     </div>
                   </div>
